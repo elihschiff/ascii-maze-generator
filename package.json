@@ -1,0 +1,19 @@
+{
+  "name": "ascii-maze-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "maze.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elihschiff/ascii-maze-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elihschiff/ascii-maze-generator/issues"
+  },
+  "homepage": "https://github.com/elihschiff/ascii-maze-generator#readme"
+}
