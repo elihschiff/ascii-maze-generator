@@ -6,8 +6,16 @@ function maze(width, height){
     walls.push([]);
     for(var j=0;j<height;j++){
       walls[i].push([1,1,1,1])
+      if(i==0){walls[i][j][3]=0}
+      if(i==width-1){walls[i][j][1]=0}
+      if(j==0){walls[i][j][0]=0}
+      if(j==height-1){walls[i][j][2]=0}
     }
   }
+  walls[0][0][2]=0;
+  walls[0][1][0]=0;
+  walls[width-1][height-1][0]=0;
+  walls[width-1][height-2][2]=0;
 
   var cells = [];
   for(var i=0;i<walls.length-1;i++){
@@ -99,5 +107,4 @@ function printMaze(walls){
     output+="\n";
   }
   console.log(output);
-  console.log(getWallType([1,1,1,0]))
 }
