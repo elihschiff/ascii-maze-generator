@@ -26,7 +26,10 @@ function maze(width, height){
   }
 
   makeMaze(walls, cells, 0,0);
-  printMaze(walls)
+  var output = getMazeString(walls)
+
+  console.log(output);
+  return output;
 }
 
 
@@ -97,7 +100,7 @@ function getWallType(type){
   return wallChars[type[0]][type[1]][type[2]][type[3]]
 }
 
-function printMaze(walls){
+function getMazeString(walls){
   var output = "";
   for(var i=0;i<walls[0].length;i++){
     for(var j=0;j<walls.length;j++){
@@ -112,5 +115,5 @@ function printMaze(walls){
     }
     output+="\n";
   }
-  console.log(output);
+  return output;
 }
