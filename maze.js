@@ -8,10 +8,78 @@ function maze(width, height){
       walls[i].push([1,1,1,1])
     }
   }
+
+  var cells = [];
+  for(var i=0;i<walls.length-1;i++){
+    cells.push([]);
+    for(var j=0;j<walls[i].length-1;j++){
+      cells[i].push(false)
+    }
+  }
+
+  makeMaze(walls, cells, 0,0);
   printMaze(walls)
 }
 
 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+function makeMaze(walls, cells, x, y){
+  // console.log(x + " " + y)
+  cells[x][y] = true;
+  var order = shuffle([0,1,2,3])
+  var functions = [
+    function(){
+      if(x>0){
+        if(!cells[x-1][y]){
+          walls[x][y][2]=0;
+          walls[x][y+1][0]=0;
+          // makeMaze(walls,cells,x-1,y);
+        }
+      }
+    },
+    function(){
+      if(x<cells.length-1){
+        if(!cells[x+1][y]){
+          walls[x][y+1][2]=0;
+          walls[x+1][y+1][0]=0;
+          // makeMaze(walls,cells,x+1,y);
+        }
+      }
+    },
+    function(){
+      // if(y>0){
+      //   if(!cells[x][y-1]){
+      //     walls[x][y][1]=0;
+      //     walls[x+1][y][3]=0;
+      //     // makeMaze(walls,cells,x,y-1);
+      //   }
+      // }
+    },
+    function(){
+      // if(y<cells[0].length-1){
+      //   if(!cells[x][y+1]){
+      //     walls[x][y+1][1]=0;
+      //     walls[x+1][y+1][3]=0;
+      //     // makeMaze(walls,cells,x,y+1);
+      //   }
+      // }
+    }
+  ]
+  functions[order[0]]();
+  functions[order[1]]();
+  functions[order[2]]();
+  functions[order[3]]();
+}
 
 function getWallType(type){
   //0 = top wall
@@ -24,11 +92,12 @@ function getWallType(type){
 
 function printMaze(walls){
   var output = "";
-  for(var i=0;i<walls.length;i++){
-    for(var j=0;j<walls[i].length;j++){
-      output+=getWallType(walls[i][j]);
+  for(var i=0;i<walls[0].length;i++){
+    for(var j=0;j<walls.length;j++){
+      output+=getWallType(walls[j][i]);
     }
     output+="\n";
   }
   console.log(output);
+  console.log(getWallType([1,1,1,0]))
 }
