@@ -42,7 +42,6 @@ function shuffle(a) {
 }
 
 function makeMaze(walls, cells, x, y){
-  // console.log(x + " " + y)
   cells[x][y] = true;
   var order = shuffle([0,1,2,3])
   var functions = [
@@ -103,6 +102,13 @@ function printMaze(walls){
   for(var i=0;i<walls[0].length;i++){
     for(var j=0;j<walls.length;j++){
       output+=getWallType(walls[j][i]);
+      if(j<walls.length-1){
+        if(walls[j][i][1]){
+          output+="━";
+        }else{
+          output+=" ";
+        }
+      }
     }
     output+="\n";
   }
