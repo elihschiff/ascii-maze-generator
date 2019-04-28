@@ -1,4 +1,4 @@
-maze(3,3);
+maze(30,30);
 
 function maze(width, height){
   var walls = [];
@@ -43,36 +43,36 @@ function makeMaze(walls, cells, x, y){
         if(!cells[x-1][y]){
           walls[x][y][2]=0;
           walls[x][y+1][0]=0;
-          // makeMaze(walls,cells,x-1,y);
+          makeMaze(walls,cells,x-1,y);
         }
       }
     },
     function(){
       if(x<cells.length-1){
         if(!cells[x+1][y]){
-          walls[x][y+1][2]=0;
+          walls[x+1][y][2]=0;
           walls[x+1][y+1][0]=0;
-          // makeMaze(walls,cells,x+1,y);
+          makeMaze(walls,cells,x+1,y);
         }
       }
     },
     function(){
-      // if(y>0){
-      //   if(!cells[x][y-1]){
-      //     walls[x][y][1]=0;
-      //     walls[x+1][y][3]=0;
-      //     // makeMaze(walls,cells,x,y-1);
-      //   }
-      // }
+      if(y>0){
+        if(!cells[x][y-1]){
+          walls[x][y][1]=0;
+          walls[x+1][y][3]=0;
+          makeMaze(walls,cells,x,y-1);
+        }
+      }
     },
     function(){
-      // if(y<cells[0].length-1){
-      //   if(!cells[x][y+1]){
-      //     walls[x][y+1][1]=0;
-      //     walls[x+1][y+1][3]=0;
-      //     // makeMaze(walls,cells,x,y+1);
-      //   }
-      // }
+      if(y<cells[0].length-1){
+        if(!cells[x][y+1]){
+          walls[x][y+1][1]=0;
+          walls[x+1][y+1][3]=0;
+          makeMaze(walls,cells,x,y+1);
+        }
+      }
     }
   ]
   functions[order[0]]();
